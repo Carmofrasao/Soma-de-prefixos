@@ -8,8 +8,8 @@
 
 #include "chrono.c"
 
-#define DEBUG 0
-//#define DEBUG 1
+// #define DEBUG 0
+#define DEBUG 1
 #define MAX_THREADS 64
 #define LOOP_COUNT 1
 
@@ -50,8 +50,6 @@ void *prefixPartialSum(void *ptr)
     // assume que temos pelo menos 1 elemento por thhread
     int first = myIndex * nElements;
     int last = min( (myIndex+1) * nElements, nTotalElements ) - 1;
-    // first e last estão errados
-    printf("p: %d, u: %d\n", first, last);
 
     #if DEBUG == 1
       printf("thread %d here! first=%d last=%d\n", myIndex, first, last );
@@ -63,9 +61,12 @@ void *prefixPartialSum(void *ptr)
     // AQUI É ONDE A OPERAÇÃO REALMENTE É FEITA VVVVVVVVVV
         
     // work with my chunck
-    float myPartialSum = 0;
+    int myPartialSum = 0;
     for( int i=first; i<=last ; i++ )
         myPartialSum += InputVector[i];
+    
+    for( int i=first; i<=last-1 ; i++ )
+        InputVector[i+1] += InputVector[i];
         
     // store my result 
     partialSum[ myIndex ] = myPartialSum;     
@@ -75,11 +76,8 @@ void *prefixPartialSum(void *ptr)
     pthread_barrier_wait(&myBarrier);    
     
     if(myIndex != 0)
-        partialSum[myIndex] = partialSum[myIndex-1];
+        partialSum[myIndex] += partialSum[myIndex-1];
 
-    for(int i = first; i < last; i++)
-        printf("%d ", partialSum[i]);
-    printf("\n");
     return NULL;
 }
 
