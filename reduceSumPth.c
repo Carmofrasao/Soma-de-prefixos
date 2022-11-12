@@ -6,7 +6,40 @@
 #include <sys/time.h>
 #include <stdlib.h>
 
+
 #include "chrono.c"
+
+// REDUÇÃO paralela com Pthreads
+// por W.Zola/UFPR
+
+// será feita a redução com operação de soma de floats (função plus, somando dois floats)
+// usando nThreads (definida via linha de comando)
+
+// Entrada para a operação ReducePlus será: 
+//   um vetor de nTotalElements elementos 
+//   (nTotalElements obtido da linha de comando)
+// Para esse teste o vetor NÂO será lido, 
+//   - o vetor será preenchido sequencialmente pela função main
+
+// Cada thread terá irá fazer a redução de nTotalElements / nThreads elementos
+// A última thread poderá reduzir menos que nTotalElements / nThreads elementos
+//   quando n não for múltiplo de nThreads
+// Cada thread irá produzir seu resultado no vetor partialSum
+// Todas as threads sincronizam com uma barreira
+// Após sincronização com barreira:
+//   - a thread 0 (main) irá calcular e imprimir a soma global sequencialmente 
+//   - as threads diferentes de 0 irão simplesmente terminar
+
+// o programa deve calcular e imprimir o tempo de calculo da reducao
+// em duas versoes:
+// versão A) NAO incluindo o tempo de criação das threads
+// versão B) INCLUINDO  o tempo de criação das threads
+
+// rodar o programa 30 vezes obtendo o tempo MÍNIMO e o MÉDIO
+//  nas duas versoes
+
+// calcular a aceleração para 2, 3, 4, 5, 6, 7, e 8 threads
+// colocando em uma planilha (tabela)
 
 // #define DEBUG 0
 #define DEBUG 1
@@ -19,20 +52,17 @@
 
 pthread_t Thread[ MAX_THREADS ];
 int my_thread_id[ MAX_THREADS ];
-int   partialSum[ MAX_THREADS ];   
-
+float partialSum[ MAX_THREADS ];   
 
 int nThreads;  // numero efetivo de threads
                // obtido da linha de comando  
 int nTotalElements;  // numero total de elementos
                // obtido da linha de comando      
                
-int InputVector[ MAX_TOTAL_ELEMENTS ] = {3, 1, 7, 0, 4, 1, 6, 3};   // will NOT use malloc
+float InputVector[ MAX_TOTAL_ELEMENTS ];   // will NOT use malloc
                                      // for simplicity                              
   
 pthread_barrier_t myBarrier;
-
-// Codigo a ser modificado ***********************************
 
 int min( int a, int b )
 {
@@ -42,7 +72,12 @@ int min( int a, int b )
       return b;
 }
 
-void *prefixPartialSum(void *ptr)
+float plus( float a, float b )
+{
+    return a + b;
+}
+
+void *reducePartialSum(void *ptr)
 {
     int myIndex = *((int *)ptr);
     int nElements = nTotalElements / nThreads;
@@ -56,37 +91,27 @@ void *prefixPartialSum(void *ptr)
     #endif
     
     if( myIndex != 0 )
-        pthread_barrier_wait(&myBarrier);  
-
-    // AQUI É ONDE A OPERAÇÃO REALMENTE É FEITA VVVVVVVVVV
+        pthread_barrier_wait(&myBarrier);    
         
     // work with my chunck
-    int myPartialSum = 0;
+    float myPartialSum = 0;
     for( int i=first; i<=last ; i++ )
-        myPartialSum += InputVector[i];
-    
-    for( int i=first; i<last ; i++ )
-        InputVector[i+1] += InputVector[i];
+        myPartialSum = plus( myPartialSum, InputVector[i] );
+        // myPartialSum += InputVector[i];
         
     // store my result 
     partialSum[ myIndex ] = myPartialSum;     
         
-    // AQUI É ONDE A OPERAÇÃO REALMENTE É FEITA ^^^^^^^^^^
-    
     pthread_barrier_wait(&myBarrier);    
     
-    if(myIndex != 0)
-        partialSum[myIndex] += partialSum[myIndex-1];
-
     return NULL;
 }
 
-// ******************************************************************
 
 int main( int argc, char *argv[] )
 {
     int i;
-    chronometer_t parallePrefixTime;
+    chronometer_t parallelReductionTime;
     
     if( argc != 3 ) {
          printf( "usage: %s <nTotalElements> <nThreads>\n" ,
@@ -115,14 +140,14 @@ int main( int argc, char *argv[] )
          }     
     }
     
-    printf( "will use %d threads to prefix %d total elements\n\n", nThreads, nTotalElements );
+    printf( "will use %d threads to reduce %d total elements\n\n", nThreads, nTotalElements );
     
     // inicializaçoes
     // initialize InputVector
-    // for( int i=0; i<nTotalElements ; i++ )
-    //     InputVector[i] = (float)i+1;
+    for( int i=0; i<nTotalElements ; i++ )
+        InputVector[i] = (float)i+1;
         
-    chrono_reset( &parallePrefixTime );
+    chrono_reset( &parallelReductionTime );
     
     pthread_barrier_init(&myBarrier, NULL, nThreads);
 
@@ -132,15 +157,15 @@ int main( int argc, char *argv[] )
     for (i=1; i < nThreads; i++) {
       my_thread_id[i] = i;
       pthread_create( &Thread[i], NULL, 
-                      prefixPartialSum, &my_thread_id[i]);
+                      reducePartialSum, &my_thread_id[i]);
     }
 
 
     // Medindo tempo SEM criacao das threads
     pthread_barrier_wait(&myBarrier);        // que acontece se isso for omitido ?        
-    chrono_start( &parallePrefixTime );
+    chrono_start( &parallelReductionTime );
 
-    prefixPartialSum( &my_thread_id[i] ); // main faz papel da thread 0
+    reducePartialSum( &my_thread_id[i] ); // main faz papel da thread 0
     // chegando aqui todas as threads sincronizaram, até a 0 (main)
     
     // main faz a reducao da soma global
@@ -151,7 +176,7 @@ int main( int argc, char *argv[] )
     }    
         
     // Measuring time after threads finished...
-    chrono_stop( &parallePrefixTime );
+    chrono_stop( &parallelReductionTime );
 
     // main imprime o resultado global
     printf( "globalSum = %f\n", globalSum );
@@ -162,10 +187,10 @@ int main( int argc, char *argv[] )
 
     pthread_barrier_destroy( &myBarrier );
 
-    chrono_reportTime( &parallePrefixTime, "parallelPrefixTime" );
+    chrono_reportTime( &parallelReductionTime, "parallelReductionTime" );
     
     // calcular e imprimir a VAZAO (numero de operacoes/s)
-    double total_time_in_seconds = (double) chrono_gettotal( &parallePrefixTime ) /
+    double total_time_in_seconds = (double) chrono_gettotal( &parallelReductionTime ) /
                                       ((double)1000*1000*1000);
     printf( "total_time_in_seconds: %lf s\n", total_time_in_seconds );
                                   
