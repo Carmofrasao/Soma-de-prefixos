@@ -44,15 +44,16 @@ int min( int a, int b )
 
 void *prefixPartialSum(void *ptr)
 {
+    // myIndex == thread atual
     int myIndex = *((int *)ptr);
     int nElements = nTotalElements / nThreads;
-    
-    // assume que temos pelo menos 1 elemento por thhread
-    int first = myIndex * nElements;
-    int last = min( (myIndex+1) * nElements, nTotalElements ) - 1;
+    if (myIndex == nThreads-1) { nElements += nTotalElements % nThreads; }
+
+    int first = myIndex * (nTotalElements / nThreads);
+    int last = first + nElements - 1;
 
     #if DEBUG == 1
-      printf("thread %d here! first=%d last=%d\n", myIndex, first, last );
+      printf("thread %d here! first=%d last=%d\n\n", myIndex, first, last );
     #endif
     
     if( myIndex != 0 )
@@ -69,14 +70,24 @@ void *prefixPartialSum(void *ptr)
         InputVector[i+1] += InputVector[i];
         
     // store my result 
-    partialSum[ myIndex ] = myPartialSum;     
-        
+    partialSum[ myIndex ] = myPartialSum;   
+
+    #if DEBUG == 1
+        printf("pré: Thread: %d, partialSum: %d\n", myIndex, partialSum[myIndex]); 
+    #endif
+
+    if(myIndex != 0)
+        partialSum[myIndex] += partialSum[myIndex-1];
+        for(int i = first; i <= last; i++)
+            InputVector[i] += partialSum[myIndex-1];
+    
+    #if DEBUG == 1
+        printf("pós: Thread: %d, partialSum: %d\n", myIndex, partialSum[myIndex]); 
+    #endif
+
     // AQUI É ONDE A OPERAÇÃO REALMENTE É FEITA ^^^^^^^^^^
     
     pthread_barrier_wait(&myBarrier);    
-    
-    if(myIndex != 0)
-        partialSum[myIndex] += partialSum[myIndex-1];
 
     return NULL;
 }
@@ -159,6 +170,12 @@ int main( int argc, char *argv[] )
     for (i=1; i < nThreads; i++)
         pthread_join(Thread[i], NULL);   // isso é necessário ?
 
+    #if DEBUG == 1
+        printf("\n");
+        for (int i = 0; i < nTotalElements; i++)
+            printf("%d ", InputVector[i]);
+        printf("\n");
+    #endif
 
     pthread_barrier_destroy( &myBarrier );
 
