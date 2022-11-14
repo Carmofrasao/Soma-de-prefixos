@@ -13,13 +13,13 @@
 #define MAX_THREADS 64
 #define LOOP_COUNT 1
 
-#define MAX_TOTAL_ELEMENTS (500*1000*1000)  // if each float takes 4 bytes
+#define MAX_TOTAL_ELEMENTS (500*100*100)  // if each float takes 4 bytes
                                             // will have a maximum 500 million elements
                                             // which fits in 2 GB of RAM
 
-pthread_t Thread[ MAX_THREADS ];
-int my_thread_id[ MAX_THREADS ];
-int   partialSum[ MAX_THREADS ];   
+pthread_t     Thread[ MAX_THREADS ];
+int     my_thread_id[ MAX_THREADS ];
+int maximosPorThread[ MAX_THREADS ];   
 
 
 int nThreads;  // numero efetivo de threads
@@ -28,7 +28,8 @@ int nTotalElements;  // numero total de elementos
                // obtido da linha de comando      
                
 int InputVector[ MAX_TOTAL_ELEMENTS ] = {3, 1, 7, 0, 4, 1, 6, 3};   // will NOT use malloc
-                                     // for simplicity                              
+                                     // for simplicity   
+int OutputVector[ MAX_TOTAL_ELEMENTS ];                           
   
 pthread_barrier_t myBarrier;
 
@@ -66,28 +67,22 @@ void *prefixPartialSum(void *ptr)
     for( int i=first; i<=last ; i++ )
         myPartialSum += InputVector[i];
     
+    OutputVector[first] = InputVector[first];
     for( int i=first; i<last ; i++ )
-        InputVector[i+1] += InputVector[i];
+        OutputVector[i+1] = InputVector[i+1] + OutputVector[i];
         
     // store my result 
-    partialSum[ myIndex ] = myPartialSum;   
-
-    #if DEBUG == 1
-        printf("pré: Thread: %d, partialSum: %d\n", myIndex, partialSum[myIndex]); 
-    #endif
-
-    if(myIndex != 0)
-        partialSum[myIndex] += partialSum[myIndex-1];
-        for(int i = first; i <= last; i++)
-            InputVector[i] += partialSum[myIndex-1];
-    
-    #if DEBUG == 1
-        printf("pós: Thread: %d, partialSum: %d\n", myIndex, partialSum[myIndex]); 
-    #endif
+    maximosPorThread[ myIndex ] = myPartialSum;   
 
     // AQUI É ONDE A OPERAÇÃO REALMENTE É FEITA ^^^^^^^^^^
     
     pthread_barrier_wait(&myBarrier);    
+
+    if(myIndex != 0){
+        maximosPorThread[myIndex] += maximosPorThread[myIndex-1]; 
+        for(int i = first; i <= last; i++)
+            OutputVector[i] += maximosPorThread[myIndex-1];
+    }
 
     return NULL;
 }
@@ -153,12 +148,15 @@ int main( int argc, char *argv[] )
 
     prefixPartialSum( &my_thread_id[i] ); // main faz papel da thread 0
     // chegando aqui todas as threads sincronizaram, até a 0 (main)
+
+    for (i=0; i < nThreads; i++)
+        pthread_join(Thread[i], NULL);   // isso é necessário ?
     
     // main faz a reducao da soma global
     float globalSum = 0;
     for( int i=0; i<nThreads ; i++ ) {
         printf( "globalSum = %f\n", globalSum );
-        globalSum += partialSum[i];
+        globalSum += maximosPorThread[i];
     }    
         
     // Measuring time after threads finished...
@@ -166,14 +164,11 @@ int main( int argc, char *argv[] )
 
     // main imprime o resultado global
     printf( "globalSum = %f\n", globalSum );
-    
-    for (i=1; i < nThreads; i++)
-        pthread_join(Thread[i], NULL);   // isso é necessário ?
 
     #if DEBUG == 1
         printf("\n");
         for (int i = 0; i < nTotalElements; i++)
-            printf("%d ", InputVector[i]);
+            printf("%d ", OutputVector[i]);
         printf("\n");
     #endif
 
