@@ -1,11 +1,11 @@
-./prefixSumPth 500000000 $1 | grep 'reduce\|Throughput' | tee resuldados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 500000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'prefix\|Throughput' | tee resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
 
