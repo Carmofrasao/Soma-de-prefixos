@@ -8,8 +8,8 @@
 
 #include "chrono.c"
 
-// #define DEBUG 0
-#define DEBUG 1
+#define DEBUG 0
+// #define DEBUG 1
 #define MAX_THREADS 64
 #define LOOP_COUNT 1
 
@@ -27,13 +27,11 @@ int nThreads;  // numero efetivo de threads
 int nTotalElements;  // numero total de elementos
                // obtido da linha de comando      
                
-int InputVector[ MAX_TOTAL_ELEMENTS ] = {3, 1, 7, 0, 4, 1, 6, 3};   // will NOT use malloc
+int InputVector[ MAX_TOTAL_ELEMENTS ];   // will NOT use malloc
                                      // for simplicity   
 int OutputVector[ MAX_TOTAL_ELEMENTS ];                           
   
 pthread_barrier_t myBarrier;
-
-// Codigo a ser modificado ***********************************
 
 int min( int a, int b )
 {
@@ -48,7 +46,8 @@ void *prefixPartialSum(void *ptr)
     // myIndex == thread atual
     int myIndex = *((int *)ptr);
     int nElements = nTotalElements / nThreads;
-    if (myIndex == nThreads-1) { nElements += nTotalElements % nThreads; }
+    if (myIndex == nThreads-1)  
+        nElements += nTotalElements % nThreads;
 
     int first = myIndex * (nTotalElements / nThreads);
     int last = first + nElements - 1;
@@ -59,8 +58,6 @@ void *prefixPartialSum(void *ptr)
     
     if( myIndex != 0 )
         pthread_barrier_wait(&myBarrier);  
-
-    // AQUI É ONDE A OPERAÇÃO REALMENTE É FEITA VVVVVVVVVV
         
     // work with my chunck
     int myPartialSum = 0;
@@ -73,13 +70,12 @@ void *prefixPartialSum(void *ptr)
         
     // store my result 
     maximosPorThread[ myIndex ] = myPartialSum;   
-
-    // AQUI É ONDE A OPERAÇÃO REALMENTE É FEITA ^^^^^^^^^^
     
     pthread_barrier_wait(&myBarrier);    
 
-    if(myIndex != 0)
-        maximosPorThread[myIndex] += maximosPorThread[myIndex-1]; 
+    if(myIndex == 0)
+        for(int i = 1; i < nThreads; i++)
+            maximosPorThread[i] += maximosPorThread[i-1]; 
     
     pthread_barrier_wait(&myBarrier); 
 
@@ -92,8 +88,6 @@ void *prefixPartialSum(void *ptr)
 
     return NULL;
 }
-
-// ******************************************************************
 
 int main( int argc, char *argv[] )
 {
@@ -131,8 +125,8 @@ int main( int argc, char *argv[] )
     
     // inicializaçoes
     // initialize InputVector
-    // for( int i=0; i<nTotalElements ; i++ )
-    //     InputVector[i] = (float)i+1;
+    for( int i=0; i<nTotalElements ; i++ )
+        InputVector[i] = (float)i+1;
         
     chrono_reset( &parallePrefixTime );
     
