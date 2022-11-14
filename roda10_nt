@@ -1,11 +1,97 @@
-./prefixSumPth 5000000 $1 | grep 'prefix\|Throughput' | tee resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
-./prefixSumPth 5000000 $1 | grep 'Throughput' >>resultados ; tail -n1 resultados
+./prefixSumPth 5000000 1 | grep 'prefix' | tee resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 1 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
 
+./prefixSumPth 5000000 2 | grep 'prefix' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 2 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+
+./prefixSumPth 5000000 3 | grep 'prefix' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 3 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+
+./prefixSumPth 5000000 4 | grep 'prefix' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 4 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+
+./prefixSumPth 5000000 5 | grep 'prefix' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 5 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+
+./prefixSumPth 5000000 6 | grep 'prefix' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 6 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+
+./prefixSumPth 5000000 7 | grep 'prefix' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 7 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+
+./prefixSumPth 5000000 8 | grep 'prefix' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+./prefixSumPth 5000000 8 > temp.txt && cat temp.txt | grep 'Throughput' >>resultados.ods ; tail -n1 resultados.ods && cat temp.txt | grep 'total_time_in_seconds' >>resultados.ods ; tail -n1 resultados.ods
+
+rm temp.txt

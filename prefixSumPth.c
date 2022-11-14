@@ -121,7 +121,7 @@ int main( int argc, char *argv[] )
          }     
     }
     
-    printf( "will use %d threads to prefix %d total elements\n\n", nThreads, nTotalElements );
+    printf( "Usando %d thread(s) para prefixar %d elementos\n\n", nThreads, nTotalElements );
     
     // inicializaçoes
     // initialize InputVector
