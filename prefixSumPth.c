@@ -78,11 +78,17 @@ void *prefixPartialSum(void *ptr)
     
     pthread_barrier_wait(&myBarrier);    
 
-    if(myIndex != 0){
+    if(myIndex != 0)
         maximosPorThread[myIndex] += maximosPorThread[myIndex-1]; 
+    
+    pthread_barrier_wait(&myBarrier); 
+
+    if(myIndex != 0){
         for(int i = first; i <= last; i++)
             OutputVector[i] += maximosPorThread[myIndex-1];
     }
+
+    pthread_barrier_wait(&myBarrier); 
 
     return NULL;
 }
@@ -166,6 +172,9 @@ int main( int argc, char *argv[] )
     printf( "globalSum = %f\n", globalSum );
 
     #if DEBUG == 1
+    printf("\n");
+        for (int i = 0; i < nThreads; i++)
+            printf("%d ", maximosPorThread[i]);
         printf("\n");
         for (int i = 0; i < nTotalElements; i++)
             printf("%d ", OutputVector[i]);
