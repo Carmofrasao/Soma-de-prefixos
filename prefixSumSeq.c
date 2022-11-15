@@ -7,8 +7,8 @@
 
 #include "chrono.c"
 
-// #define DEBUG 0
-#define DEBUG 1
+#define DEBUG 0
+// #define DEBUG 1
 #define LOOP_COUNT 1
 
 #define MAX_TOTAL_ELEMENTS (500*100*100)  // if each float takes 4 bytes
