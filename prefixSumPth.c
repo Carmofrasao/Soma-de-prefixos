@@ -178,6 +178,18 @@ int main( int argc, char *argv[] )
     pthread_barrier_destroy( &myBarrier );
 
     chrono_reportTime( &parallePrefixTime, "parallelPrefixTime" );
+
+    // codigo de verificação
+    // (verifica o vetor de saída se contém uma soma de prefixos 
+    //   correspondente ao vetor de entrada)
+    int last = 0;
+    for( int i=0; i<nTotalElements ; i++ ) {
+        if( OutputVector[i] != (InputVector[i] + last) ) {
+            fprintf( stderr, "Out[%d]= %d (wrong result!)\n", i, OutputVector[i] );
+            break;
+        }
+        last = OutputVector[i];    
+    }
     
     // calcular e imprimir a VAZAO (numero de operacoes/s)
     double total_time_in_seconds = (double) chrono_gettotal( &parallePrefixTime ) /
